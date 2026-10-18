@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import au.edu.jcu.assessment.utilityapp.ui.theme.MobileTech_UtilityAppTheme
+import kotlin.math.round
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,7 @@ class UtilityViewModel : ViewModel() {
     var error by mutableStateOf("")
         private set
 
-    // Illustrative constants, NOT live exchange rates.
+    // Demonstration rates, not live market rates. Base currency: AUD.
     private val audPerUnit = mapOf("AUD" to 1.0, "USD" to 1.52, "EUR" to 1.76, "GBP" to 2.04, "BTN" to 0.018)
     val currencies = audPerUnit.keys.toList()
 
@@ -52,7 +53,9 @@ class UtilityViewModel : ViewModel() {
         if (number == null || !number.isFinite() || number < 0) {
             error = "Enter a valid non-negative amount"; result = ""; return
         }
-        val converted = number * audPerUnit.getValue(fromCurrency) / audPerUnit.getValue(toCurrency)
+        val rateFrom = audPerUnit.getValue(fromCurrency)
+        val rateTo = audPerUnit.getValue(toCurrency)
+        val converted = number * rateFrom / rateTo
         result = "%.2f %s".format(java.util.Locale.US, converted, toCurrency)
         error = ""
     }
@@ -115,7 +118,7 @@ fun AboutScreen() {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text("About this app", style = MaterialTheme.typography.headlineMedium)
         Text("An educational currency conversion utility built with Kotlin, Jetpack Compose, Material 3 and ViewModel.")
-        Text("Rates are illustrative fixed values relative to AUD, not live exchange rates.")
+        Text("Rates are illustrative fixed values relative to AUD, not live exchange rates. Always check a reliable source before exchanging money.")
     }
 }
 
