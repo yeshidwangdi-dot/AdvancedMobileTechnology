@@ -1,19 +1,23 @@
-# Manual testing checklist
+# Utility App test record — 18 October 2026
 
-Complete this with **actual** Android Studio test results before submitting.
+The student reported running the prepared Android project in Android Studio on the **Medium Phone Android emulator**.
 
-- [ ] Gradle sync succeeds
-- [ ] Debug APK builds
-- [ ] App launches on Android device/emulator
-- [ ] Enter 10 AUD, convert to USD (illustrative result: 6.58 USD)
-- [ ] Convert same currency
-- [ ] Swap currencies
-- [ ] Invalid and negative inputs show an error
-- [ ] Clear resets amount and output
-- [ ] About tab opens
-- [ ] Rotation retains ViewModel state
+## Verified by screenshots shared in chat
+- Gradle sync completed successfully.
+- Debug build completed: **BUILD SUCCESSFUL in 47s**, 36 actionable tasks executed.
+- Android emulator launched the Currency Converter and installation succeeded.
+- Input: **100 USD**; output: **152.00 AUD** using illustrative rates.
 
-Device/emulator: ______
-Android version: ______
-Test date: ______
-Issues and fixes: ______
+## Additional tests reported as passed by the student
+- Currency Swap changes selected currencies.
+- Clear removes the amount and result.
+- Negative input displays an error.
+- About tab opens.
+
+## Still to check
+- Rotate the emulator and verify state retention.
+- Confirm all source files, wrapper and assets are present in the final GitHub repository.
+- Confirm repository can be freshly cloned and built.
+- Check assessment rubric for any further requirements.
+
+Exchange rates are sample constants, not live values.
